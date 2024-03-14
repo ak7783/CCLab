@@ -8,7 +8,7 @@ let ySpdBubbles = [];
 let bNumber = 5;
 
 //tentacles
-let numLines = 70;
+let numLines = 30;
 let radius = 250;
 let centerX, centerY;
 
