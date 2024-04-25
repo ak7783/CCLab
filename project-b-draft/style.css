@@ -1,0 +1,132 @@
+
+
+body {
+    background-color: black;
+    font-size: 1em;
+    font-family: "Covered By Your Grace", cursive;
+        font-weight: 400;
+        font-style: normal;
+    
+      
+}
+
+.home-button {
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 5px;
+    padding-xtop: 10px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: "Covered By Your Grace", cursive;  font-style: normal; font-weight: 400;
+    position: fixed;
+    z-index: 2;
+}
+.title-wrapper {
+    position: absolute;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.title {
+    font-family: 'Arial', sans-serif;
+    font-family: "Covered By Your Grace", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3em;
+    text-shadow: 5px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.text-content {
+    font-family: "Sedan", serif;
+    font-weight: 400;
+  font-style: normal;
+    font-size: 1em;
+    line-height: 1.6; 
+    color: rgb(227, 219, 219);
+   
+}
+
+.partial-background {
+    background-image: linear-gradient(rgba(4,9,40,0.7),rgba(4,9,30,0.6)),url("images/structure.jpeg");
+    background-size: cover;
+    background-position: center;
+    min-height: 80vh;
+    min-width: 100px;
+    width:100%; 
+    position: relative;
+}
+
+
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    position: inline;  
+    
+  }
+
+.more-button {
+
+    display: inline-block;
+    text-decoration: none;
+    color: blue;
+    border: 2px solid #fff;
+    padding: 12px 34px;
+    font-size: 10px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+.content-wrapper {
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border: 2px solid black;
+}
+
+body{
+    margin: 0px;
+    background-color: #fff;
+    color: #000;
+    font-family: 'Courier New', Courier, monospace;
+   }
+   .box-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Occupy full width of parent */
+}
+
+.box-1 {
+    background-color: #fb7185;
+      position: fixed;
+      top: 0px;
+    /* z-index: -1; */
+  }
+  
+  .box-2 {
+    background-color: #facc15;
+  }
+  
+  .box-3 {
+    background-color: #15fa97;
+    position: sticky;
+    top: 60px;
+  }
+  
+  
+
+
+
