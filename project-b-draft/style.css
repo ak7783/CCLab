@@ -1,32 +1,32 @@
 
 
 body {
-    background-color: black;
+    background-color: #ffecdc;
     font-size: 1em;
     font-family: "Covered By Your Grace", cursive;
-        font-weight: 400;
-        font-style: normal;
-    
-      
+        font-weight: 500;
+        font-style: normal;     
 }
 
 .home-button {
-    background-color: blue;
-    color: white;
+    background-color: lightblue;
+    color:rgb(0, 0, 0);
     border: none;
     border-radius: 5px;
     margin-top: 10px;
     margin-left: 5px;
-    padding-xtop: 10px;
+    padding-top: 5px;
     padding-bottom: 10px;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 5px;
+    padding-right: 5px;
     cursor: pointer;
-    font-weight: bold;
+    font-size: 30px;
+    font-weight: normal;
     font-family: "Covered By Your Grace", cursive;  font-style: normal; font-weight: 400;
     position: fixed;
     z-index: 2;
 }
+
 .title-wrapper {
     position: absolute;
     width: 90%;
@@ -34,40 +34,27 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+    font-size: 35px;
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
-}
-
-.title {
-    font-family: 'Arial', sans-serif;
-    font-family: "Covered By Your Grace", cursive;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 3em;
-    text-shadow: 5px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.text-content {
-    font-family: "Sedan", serif;
-    font-weight: 400;
-  font-style: normal;
-    font-size: 1em;
-    line-height: 1.6; 
-    color: rgb(227, 219, 219);
+    text-shadow: 
+    -2px -2px 0 rgb(0, 0, 0),  
+    2px -2px 0 grey,
+    -2px 2px 0 grey,
+    2px 2px 0 grey; 
    
 }
 
 .partial-background {
     background-image: linear-gradient(rgba(4,9,40,0.7),rgba(4,9,30,0.6)),url("images/structure.jpeg");
     background-size: cover;
-    background-position: center;
-    min-height: 80vh;
+    background-position: center; 
+    min-height: 100vh;
     min-width: 100px;
     width:100%; 
-    position: relative;
+    position: relative; 
 }
-
 
 .flex-container {
     display: flex;
@@ -81,14 +68,24 @@ body {
 
     display: inline-block;
     text-decoration: none;
-    color: blue;
+    color: black;
+    font-weight: 10px;
     border: 2px solid #fff;
     padding: 12px 34px;
-    font-size: 10px;
-    background: transparent;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px rgb(0, 0, 255);
+    background:transparent;
     position: relative;
     cursor: pointer;
+
 }
+
+.more-button:hover{
+  border: 2px solid #fff;
+  background: #fff; 
+  transition: 0.1s; 
+}
+
 .content-wrapper {
     width: 400px;
     height: 400px;
@@ -96,37 +93,164 @@ body {
     border: 2px solid black;
 }
 
-body{
-    margin: 0px;
-    background-color: #fff;
-    color: #000;
-    font-family: 'Courier New', Courier, monospace;
-   }
    .box-container {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%; /* Occupy full width of parent */
+    width: 100%; 
 }
-
-.box-1 {
-    background-color: #fb7185;
-      position: fixed;
-      top: 0px;
-    /* z-index: -1; */
-  }
   
-  .box-2 {
-    background-color: #facc15;
+.box-2 {
+    font-weight: 400;
+    font-style: cursive;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color:transparent;
+    width: 50%; 
+    margin-right: 5px;
+    position: relative;
+    display: block; 
+    height: 100%;
+    padding-left: 10px;
+    
   }
+
+  .box-2 h2 {
+    font-size: 24px;
+    font-family: "Covered By Your Grace", cursive;  font-style: normal; font-weight: 400;
+    color: #333; 
+    font-weight: 400;
+    font-style: cursive;
+    text-align: center;
+    background-color: lightblue;
+      /* width: 50%;  */
+      margin-top: 10px;
+      margin-left: 5px;
+      padding-top: 5px;
+      padding-bottom: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      
+}
   
   .box-3 {
-    background-color: #15fa97;
-    position: sticky;
-    top: 60px;
+    background-color: transparent;
+    width:50%; 
+    margin-left: 5px;
+    position: relative;
+    height:100;
+    font-family: "Covered By Your Grace", cursive;
+
+    
+  
+  }
+  .box-3 h2 {
+    background-color: lightblue;
+    font-size: 24px;
+    font-family: "Covered By Your Grace", cursive;
+    font-style: normal; 
+    font-weight: 400; 
+    text-align: center;
+    color: #333; 
+    font-weight: 400;
+    font-style: normal;
+    display: block; 
+      margin-top: 10px;
+      margin-left: 5px;
+      padding-top: 5px;
+      padding-bottom: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+
+}
+  
+  .textbox{
+    width: 100%;
+    display:flex;
+    margin-top: 20px;
+    min-height: 100px; 
   }
   
+ 
+  .dot {
+    position: relative;
+    display: inline-block;
+    background-color: #3333331f;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.dot-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit:contain;
+    position: relative;
+    cursor: pointer; 
+ 
+}
+
+.dot:hover .dot-image {
+    border: 3px solid #fff;
+    background: #fff;
+    transition: 0.1s;
+    size: 30%; 
+    
+}
+
+.image-text {
+  position: absolute;
+  bottom: 0;
+  left: 50%; 
+  transform: translateX(-50%);
+  display: none;
+  color: black;
+    font-size: 30px;
+    font-family: "Covered By Your Grace", cursive;  font-style: normal; font-weight: 400;
+    font-weight: 500;
+    text-shadow: 
+      -1px -1px 0 yellow,  
+      1px -1px 0 yellow,
+      -1px  1px 0 yellow,
+      1px  1px 0 yellow;
+}
+
+
+.dot:hover .image-text{
+    display: inline-block ;
+}
+
+/* .dot:hover .infotext{
+  display: inline-block ;
+}
+
+.infotext {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  transform: translateX(50%);
+  display: none;
+  color: black;
+  font-size: 20px;
+  font-family: "Covered By Your Grace", cursive;
+  font-style: normal;
+  font-weight: 500;
+  background: none;
+} */
+
+
+#p5-canvas-container {
+      width: 600px; 
+      height: 500px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+
   
-
-
-
