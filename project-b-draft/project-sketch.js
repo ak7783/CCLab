@@ -1,83 +1,131 @@
-
-
-
-var colors;
-var capture;
-var trackingData;
+let handpose;
 let video;
-let trackColor;
+let hands = [];
+let nodes = [];
+let olympus;
 
 
 function setup() {
-    let canvas = createCanvas(500, 500);
+    let canvas = createCanvas(640, 480);
     canvas.parent("p5-canvas-container");
-    pixelDensity(1);
     video = createCapture(VIDEO);
     video.size(width, height);
-    // The above function actually makes a separate video
-    // element on the page.  The line below hides it since we are
-    // drawing the video to the canvas
-    video.hide();
 
-    // Start off tracking for red
-    trackColor = [255, 0, 0];
+    handpose = ml5.handpose(video, modelReady);
+
+    // This sets up an event that fills the global variable "predictions"
+    // with an array every time new hand poses are detected
+    handpose.on("hand", (results) => {
+        hands = results;
+        checkHandOpen();
+    });
+
+    // Hide the video element, and just show the canvas
+    video.hide();
+}
+
+
+function modelReady() {
+    console.log("Model ready!");
+}
+
+function preload() {
+    olympus = loadImage("images/olympus1-remove.png");
 }
 
 function draw() {
+    background(0);
+    image(video, 0, 0, width, height);
+    image(olympus, width / 2 - 300, height / 2, width, height);
 
-
-    // Draw the video
-    image(video, 0, 0);
-
-    // We are going to look at the video's pixels
-    video.loadPixels();
-
-    // Before we begin searching, the "world record" for closest color is set to a high number that is easy for the first pixel to beat.
-    let worldRecord = 500;
-
-    // XY coordinate of closest color
-    let closestX = 0;
-    let closestY = 0;
-
-    for (let y = 0; y < video.height; y++) {
-        for (let x = 0; x < video.width; x++) {
-            let loc = (x + y * video.width) * 4;
-            // The functions red(), green(), and blue() pull out the three color components from a pixel.
-            let r1 = video.pixels[loc];
-            let g1 = video.pixels[loc + 1];
-            let b1 = video.pixels[loc + 2];
-
-            let r2 = trackColor[0];
-            let g2 = trackColor[1];
-            let b2 = trackColor[2];
-
-            // Using euclidean distance to compare colors
-            let d = dist(r1, g1, b1, r2, g2, b2); // We are using the dist( ) function to compare the current color with the color we are tracking.
-
-            // If current color is more similar to tracked color than
-            // closest color, save current location and current difference
-            if (d < worldRecord) {
-                worldRecord = d;
-                closestX = x;
-                closestY = y;
-            }
+    for (let i = nodes.length - 1; i >= 0; i--) {
+        nodes[i].updatePosition();
+        nodes[i].render();
+        if (nodes[i].myLightning.length <= 0) {
+            nodes.splice(i, 1); // Remove node if it has no lightning bolts
         }
-    }
-
-    // We only consider the color found if its color distance is less than 10. 
-    // This threshold of 10 is arbitrary and you can adjust this number depending on how accurate you require the tracking to be.
-    if (worldRecord < 50) {
-        // Draw a circle at the tracked pixel
-        fill(trackColor);
-        strokeWeight(4.0);
-        stroke(0);
-        ellipse(closestX, closestY, 16, 16);
     }
 }
 
+function checkHandOpen() {
+    // Loop through detected hands
+    for (let i = 0; i < hands.length; i++) {
+        const hand = hands[i];
+        const thumbTip = createVector(hand.landmarks[4][0], hand.landmarks[4][1]); // Get the landmark for the tip of the thumb
+        const littleFingerTip = createVector(hand.landmarks[20][0], hand.landmarks[20][1]); // Get the landmark for the tip of the little finger
 
-function mousePressed() {
-    // Save color where the mouse is clicked in trackColor variable
-    trackColor = video.get(mouseX, mouseY);
-    console.log(trackColor);
+        let open = thumbTip.dist(littleFingerTip);
+
+        if (open > 60) { // Hand is closed
+            // Create a new node at the tip of the thumb
+            nodes.push(new Node(thumbTip.x, thumbTip.y));
+        }
+    }
+}
+
+class Node {
+    constructor(x, y) {
+        this.xPos = x;
+        this.yPos = y;
+        this.direction = random(TWO_PI);
+        this.speed = random(15, 20);
+        this.sync = millis() + random(300, 1000);
+        this.myLightning = [];
+    }
+
+    updatePosition() {
+        this.pxPos = this.xPos;
+        this.pyPos = this.yPos;
+        this.direction += radians(random(-20, 20));
+        this.xPos += sin(this.direction) * this.speed;
+        this.yPos += cos(this.direction) * this.speed;
+        if (this.xPos > width || this.xPos < 0 || this.yPos > height || this.yPos < 0) {
+            this.direction = atan2(width / 2 - this.xPos, height / 2 - this.yPos);
+        }
+    }
+
+    render() {
+        if (millis() < this.sync) {
+            this.myLightning.push(new Lightning(this.xPos, this.yPos, this.pxPos, this.pyPos));
+        }
+
+        for (let i = this.myLightning.length - 1; i >= 0; i--) {
+            this.myLightning[i].render();
+        }
+    }
+}
+
+class Lightning {
+    constructor(x1, y1, x2, y2) {
+        this.pointA = createVector(x1, y1);
+        this.pointB = createVector(x2, y2);
+        this.count = dist(this.pointA.x, this.pointA.y, this.pointB.x, this.pointB.y) / 5;
+        this.sync = millis() + 250;
+        this.myPoints = this.assemblePoints();
+    }
+
+    assemblePoints() {
+        let nodes = [];
+        for (let iter = 1 / this.count; iter < 1; iter += 1 / this.count) {
+            let x = lerp(this.pointA.x, this.pointB.x, iter) + random(-5, 5);
+            let y = lerp(this.pointA.y, this.pointB.y, iter) + random(-5, 5);
+            nodes.push(createVector(x, y));
+        }
+        return nodes;
+    }
+
+    render() {
+        if (millis() > this.sync) {
+            return;
+        }
+
+        strokeWeight(random(1, 5));
+        stroke(255, 255, random(255), random(100, 255));
+        let oldPoint = this.pointA;
+        for (let i = 0; i < this.myPoints.length; i++) {
+            line(oldPoint.x, oldPoint.y, this.myPoints[i].x, this.myPoints[i].y);
+            oldPoint = this.myPoints[i];
+        }
+        line(oldPoint.x, oldPoint.y, this.pointB.x, this.pointB.y);
+    }
 }

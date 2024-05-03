@@ -55,8 +55,8 @@ body {
   color: white;
   font-size: 35px;
   text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px;
+  padding-right: 10px; */
   text-shadow:
     -2px -2px 0 rgb(0, 0, 0),
     2px -2px 0 grey,
@@ -67,6 +67,16 @@ body {
 
 .partial-background {
   background-image: linear-gradient(rgba(4, 9, 40, 0.7), rgba(4, 9, 30, 0.6)), url("images/structure.jpeg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  /* min-width: 100px; */
+  /* width:100%;  */
+  position: relative;
+}
+
+.olympus-background {
+  background-image: linear-gradient(rgba(4, 9, 40, 0.7), rgba(4, 9, 30, 0.6)), url("images/olympus1-remove.png");
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -278,18 +288,39 @@ body {
   background: none;
 } */
 
-
+/* <!-- Zeus Page--> */
 #p5-canvas-container {
-  width: 600px;
-  height: 500px;
+  /* width: 600px;
+  height: 500px; */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  object-fit: contain;
+  border: 10px solid lightblue;
 }
 
-/* <!-- Athen Page--> */
 
+
+/* <!-- Athen Page--> */
+/* <!-- Athen Page--> */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* Adjust this based on your layout */
+}
+
+.zeus-dot {
+  position: relative;
+  background-color: none;
+  width: 500px;
+  height: 500px;
+  /* border-radius: 50%; */
+
+
+}
 
 .athens-background {
   background-image: linear-gradient(rgba(4, 9, 40, 0.7), rgba(4, 9, 30, 0.6)), url("images/athens.jpeg");
