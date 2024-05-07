@@ -27,24 +27,7 @@ body {
   z-index: 2;
 }
 
-/* .title-wrapper-before {
-  position: absolute;
-  width: 90%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -200%);
-  color: white;
-  font-size: 35px;
-  text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-shadow: 
-  -2px -2px 0 rgb(0, 0, 0),  
-  2px -2px 0 grey,
-  -2px 2px 0 grey,
-  2px 2px 0 grey; 
- 
-} */
+
 
 .title-wrapper {
   position: absolute;
@@ -129,7 +112,21 @@ body {
   width: 100%;
 }
 
+.imgContainer {
+  width: 100%;
+  font-weight: 400;
+  font-style: cursive;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: transparent;
+  margin-right: 5px;
+  margin-left: 5px;
+  position: relative;
+  display: block;
+  height: 100%;
+  padding-right: 20px;
+  padding-bottom: 10px;
 
+}
 
 .box-2 {
   font-weight: 400;
@@ -157,7 +154,6 @@ body {
   font-style: cursive;
   text-align: center;
   background-color: lightblue;
-  /* width: 50x%;  */
   margin-top: 1dvh;
   margin-left: 5px;
   padding-top: 5px;
@@ -190,8 +186,7 @@ body {
   font-weight: 400;
   font-style: normal;
   display: block;
-  margin-top: 10px;
-  margin-left: 5px;
+  margin: 20px;
   padding-top: 5px;
   padding-bottom: 10px;
   padding-left: 5px;
@@ -241,6 +236,8 @@ body {
 
 }
 
+
+
 .image-text {
   position: absolute;
   bottom: 0;
@@ -265,60 +262,134 @@ body {
   display: inline-block;
 }
 
-/* .dot:hover .infotext{
-  display: inline-block ;
+
+
+
+/* <!--ZEUS PAGE--> */
+
+#p5container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
-.infotext {
-  position: relative;
-  margin-top: 10px;
-  margin-left: 5px;
-  padding-top: 5px;
-  padding-bottom: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
-
-  transform: translateX(50%);
-  display: none;
-  color: black;
-  font-size: 20px;
-  font-family: "Covered By Your Grace", cursive;
-  font-style: normal;
-  font-weight: 500;
-  background: none;
-} */
-
-/* <!-- Zeus Page--> */
 #p5-canvas-container {
-  /* width: 600px;
-  height: 500px; */
+  height: 480px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   object-fit: contain;
-  border: 10px solid lightblue;
+  border: 5px solid lightblue;
+}
+
+.zeus-page-title-wrapper {
+  position: absolute;
+  width: 100%;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 70px;
+  text-align: center;
+
+  text-shadow:
+    -2px -2px 0 rgb(0, 0, 0),
+    2px -2px 0 rgb(0, 0, 0),
+    -2px 2px 0 rgb(0, 0, 0),
+    2px 2px 0 rgb(0, 0, 0);
+  z-index: 1;
+}
+
+.zeus-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.zeus-dot {
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+  background-color: #1515151b;
+  width: 50px;
+  height: 50px;
+  /* Adjust the height as needed */
+  border-radius: 50%;
+  transform: translateX(50%);
+  width: fit-content;
+  height: fit-content;
+}
+
+.zeus-dot-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: fill;
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 400px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 50%;
+  transition: opacity 0.3s;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.left .tooltip-text {
+  left: -300px;
+}
+
+/* Tooltip text on the right side */
+.right .tooltip-text {
+  right: 500px;
 }
 
 
-
-/* <!-- Athen Page--> */
 /* <!-- Athen Page--> */
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+
   /* Adjust this based on your layout */
 }
 
-.zeus-dot {
+.mount-olympus-background {
+  background-image: linear-gradient(rgba(4, 9, 40, 0.7), rgba(4, 9, 30, 0.6)), url("images/olympus1.jpeg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  /* min-width: 100px; */
+  /* width:100%;  */
   position: relative;
-  background-color: none;
-  width: 500px;
-  height: 500px;
-  /* border-radius: 50%; */
-
 
 }
 
