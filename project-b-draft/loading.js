@@ -48,18 +48,17 @@ function draw() {
     if (index == 1) {
         background(0, 145, 100);
         if (isOpen) {
-            // Display the open box image
+
             image(openImg, boxX, boxY, boxWidth, boxHeight);
 
-            // Show and position the clock GIF in front of the open box
+
             clockGif.position(boxX + (boxWidth - clockGif.width) / 2 - 60, clockY);
             clockGif.show();
 
-            // Move the clock GIF up until it reaches its final position
             if (clockY > boxY - clockGif.height - 100) {
                 clockY -= 2;
             } else {
-                // Display instructions below the box
+
                 push();
                 rectMode(CENTER);
                 fill(0, 145, 100);
@@ -71,14 +70,14 @@ function draw() {
                 text("Click here to stop the clock", (width - boxWidth) / 2 + 100, boxY + 300 + bobHeight);
             }
         } else {
-            // Display the closed box image
+
             image(closeImg, boxX, boxY, boxWidth, boxHeight);
 
-            // Reset clock position and hide it
+
             clockY = height / 2 - boxHeight / 2 - 30;
 
 
-            // Display text animation
+
             bobAmount = sin(bobHeight) * 3;
             bobHeight = bobHeight + 0.15;
 
@@ -94,7 +93,7 @@ function draw() {
         } else {
             window.location.href = "home-page.html";
         }
-        // Display destination text and watch image
+
         background(0);
         clockGif.hide();
         text("Your destination: Ancient Greece: 12 Century BC", width / 2, boxY + 300 + bobAmount);
