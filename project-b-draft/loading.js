@@ -1,4 +1,3 @@
-let closeImg;
 let openImg;
 let clockGif;
 let lightImg;
@@ -13,11 +12,15 @@ let bobHeight = 0;
 let index = 1;
 let loadTm = 200;
 let bobAmount;
+let watchImg;
+let watchImgx;
+let watchImgy;
 
 
 function preload() {
     closeImg = loadImage('images/Screenshot 2024-05-06 at 9.40 Background Removed.42 PM.png');
     openImg = loadImage('images/Screenshot 2024-05-06 at 9.46 Background Removed.11 PM.png');
+    watchImg = loadImage('images/pocketwatch.png');
 
     // clock GIF
     clockGif = createImg('images/output-onlinegiftools-ezgif.com-optimize.gif', '');
@@ -35,19 +38,28 @@ function setup() {
     clockY = height / 2 - boxHeight / 2 - 30;
     // console.log(clockY)
     clockGif.size(140, 100);
+    // watchImg = boxX + (boxWidth - watchImg.width) / 2 - 60;
+    watchImgX = boxX + (boxWidth - watchImg.width) / 2 - 60;
+    watchImgY = height / 2 - boxHeight / 2 - 400;
 }
 
 function draw() {
+
     if (index == 1) {
         background(0, 145, 100);
         if (isOpen) {
+            // Display the open box image
             image(openImg, boxX, boxY, boxWidth, boxHeight);
-            // console.log(clockY)
+
+            // Show and position the clock GIF in front of the open box
             clockGif.position(boxX + (boxWidth - clockGif.width) / 2 - 60, clockY);
             clockGif.show();
+
+            // Move the clock GIF up until it reaches its final position
             if (clockY > boxY - clockGif.height - 100) {
-                clockY -= 0.3;
+                clockY -= 2;
             } else {
+                // Display instructions below the box
                 push();
                 rectMode(CENTER);
                 fill(0, 145, 100);
@@ -57,23 +69,24 @@ function draw() {
                 textFont('Orbitron');
                 fill('red');
                 text("Click here to stop the clock", (width - boxWidth) / 2 + 100, boxY + 300 + bobHeight);
-
             }
-
         } else {
+            // Display the closed box image
             image(closeImg, boxX, boxY, boxWidth, boxHeight);
+
+            // Reset clock position and hide it
             clockY = height / 2 - boxHeight / 2 - 30;
-            clockGif.hide();
 
-            // text bob
+
+            // Display text animation
             bobAmount = sin(bobHeight) * 3;
-            bobHeight = bobHeight + 0.05;
+            bobHeight = bobHeight + 0.15;
 
-            textSize(16);
+            textSize(40);
             textFont('Orbitron');
             fill("blue");
             textAlign(CENTER);
-            text("Click the box for an adventure", width / 2, boxY - 30 + bobAmount);
+            text("Open the box", width / 2, boxY - 30 + bobAmount);
         }
     } else {
         if (loadTm > 0) {
@@ -81,10 +94,11 @@ function draw() {
         } else {
             window.location.href = "home-page.html";
         }
+        // Display destination text and watch image
         background(0);
-        // clockGif.hide();
-        text("Your destintation: Ancient Greece: 12 Century BC", width / 2, boxY + 300 + bobAmount);
-
+        clockGif.hide();
+        text("Your destination: Ancient Greece: 12 Century BC", width / 2, boxY + 300 + bobAmount);
+        image(watchImg, boxX, boxY, boxWidth, boxHeight);
     }
 }
 

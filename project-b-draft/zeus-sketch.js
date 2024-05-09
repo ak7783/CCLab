@@ -42,7 +42,7 @@ function draw() {
         nodes[i].updatePosition();
         nodes[i].render();
         if (nodes[i].myLightning.length <= 0) {
-            nodes.splice(i, 1); // Remove node if it has no lightning bolts
+            nodes.splice(i, 1);
         }
     }
 }

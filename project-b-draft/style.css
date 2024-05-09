@@ -4,6 +4,7 @@ body {
   font-family: "Covered By Your Grace", cursive;
   font-weight: 500;
   font-style: normal;
+
 }
 
 .home-button {
@@ -27,6 +28,12 @@ body {
   z-index: 2;
 }
 
+.home-button:hover {
+  border: solid #fff;
+  background: #fff;
+  transition: 0.1s;
+  color: rgb(4, 0, 255);
+}
 
 
 .title-wrapper {
@@ -133,14 +140,16 @@ body {
   font-style: cursive;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color: transparent;
-  width: 50%;
-  margin-right: 5px;
-  margin-left: 5px;
+  width: 100%;
+  margin-right: 10px;
+  margin-left: 10px;
   position: relative;
   display: block;
   height: 100%;
-  padding-right: 20px;
+  padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 510x;
 
 }
 
@@ -155,11 +164,11 @@ body {
   text-align: center;
   background-color: lightblue;
   margin-top: 1dvh;
-  margin-left: 5px;
-  padding-top: 5px;
+  margin-left: 10px;
+  padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 510x;
 
 }
 
@@ -186,7 +195,7 @@ body {
   font-weight: 400;
   font-style: normal;
   display: block;
-  margin: 20px;
+  margin: 5px;
   padding-top: 5px;
   padding-bottom: 10px;
   padding-left: 5px;
@@ -210,7 +219,9 @@ body {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  transform: translateX(25%);
+  transform: translateX(50%);
+  margin-right: 100px;
+  margin-left: 100px;
 
 
 }
@@ -235,7 +246,6 @@ body {
   transform: translateX(-2%);
 
 }
-
 
 
 .image-text {
@@ -271,7 +281,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 1;
+
 }
 
 #p5-canvas-container {
@@ -281,17 +292,19 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   object-fit: contain;
-  border: 5px solid lightblue;
+  /* //border: 5px solid lightblue; */
+  z-index: 1;
+  padding-top: 50px;
 }
 
 .zeus-page-title-wrapper {
   position: absolute;
-  width: 100%;
+  width: 90%;
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
   color: white;
-  font-size: 70px;
+  font-size: 40px;
   text-align: center;
 
   text-shadow:
@@ -299,7 +312,7 @@ body {
     2px -2px 0 rgb(0, 0, 0),
     -2px 2px 0 rgb(0, 0, 0),
     2px 2px 0 rgb(0, 0, 0);
-  z-index: 1;
+  z-index: 3;
 }
 
 .zeus-container {
@@ -311,18 +324,27 @@ body {
   padding-left: 50px;
 }
 
+#greek-frame {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .zeus-dot {
   position: relative;
   display: inline-block;
-  margin: 20px;
+  margin-bottom: 20px;
   background-color: #1515151b;
   width: 50px;
   height: 50px;
-  /* Adjust the height as needed */
   border-radius: 50%;
-  transform: translateX(50%);
+  transform: translateX(100%);
   width: fit-content;
   height: fit-content;
+  margin-right: 20px;
+  /* Adjust the right margin for spacing */
 }
 
 .zeus-dot-image {
@@ -332,6 +354,28 @@ body {
   object-fit: fill;
   position: relative;
   cursor: pointer;
+}
+
+.left-image,
+.right-image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150px;
+  /* Adjust width as needed */
+  height: auto;
+  /* Maintain aspect ratio */
+}
+
+.left-image {
+  left: 20px;
+  /* Adjust left position */
+}
+
+.right-image {
+  right: 20px;
+  /* Adjust right position */
+
 }
 
 .tooltip {
@@ -401,6 +445,7 @@ body {
   /* min-width: 100px; */
   /* width:100%;  */
   position: relative;
+  z-index: 1;
 }
 
 
@@ -415,4 +460,15 @@ body {
   /* min-width: 100px; */
   /* width:100%;  */
   position: relative;
+}
+
+.left-bubble {
+  position: absolute;
+  top: 50%;
+
+  transform: translate(370%, -100%);
+  width: 300px;
+  /* Adjust width as needed */
+  height: auto;
+  /* Maintain aspect ratio */
 }
