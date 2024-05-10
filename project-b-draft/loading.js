@@ -23,8 +23,7 @@ function preload() {
     watchImg = loadImage('images/pocketwatch.png');
 
     // clock GIF
-    clockGif = createImg('images/output-onlinegiftools-ezgif.com-optimize.gif', '');
-    clockGif.hide();
+    clockGif = createImg('images/output-onlinegiftools-ezgif.com-optimize.gif', ''); clockGif.hide();
 
     // Angel sound
     angelSound = loadSound('images/ahhhh-37191.mp3');
@@ -44,21 +43,17 @@ function setup() {
 }
 
 function draw() {
-
     if (index == 1) {
-        background(0, 145, 100);
+        // background(0, 145, 100);
+        background(255);
         if (isOpen) {
-
             image(openImg, boxX, boxY, boxWidth, boxHeight);
-
-
+            // console.log(clockY)
             clockGif.position(boxX + (boxWidth - clockGif.width) / 2 - 60, clockY);
             clockGif.show();
-
             if (clockY > boxY - clockGif.height - 100) {
                 clockY -= 2;
             } else {
-
                 push();
                 rectMode(CENTER);
                 fill(0, 145, 100);
@@ -68,19 +63,13 @@ function draw() {
                 textFont('Orbitron');
                 fill('red');
                 text("Click here to stop the clock", (width - boxWidth) / 2 + 100, boxY + 300 + bobHeight);
+
             }
         } else {
-
             image(closeImg, boxX, boxY, boxWidth, boxHeight);
-
-
             clockY = height / 2 - boxHeight / 2 - 30;
-
-
-
             bobAmount = sin(bobHeight) * 3;
             bobHeight = bobHeight + 0.15;
-
             textSize(40);
             textFont('Orbitron');
             fill("blue");
@@ -93,11 +82,16 @@ function draw() {
         } else {
             window.location.href = "home-page.html";
         }
-
         background(0);
-        clockGif.hide();
         text("Your destination: Ancient Greece: 12 Century BC", width / 2, boxY + 300 + bobAmount);
         image(watchImg, boxX, boxY, boxWidth, boxHeight);
+    }
+
+    if (isOpen) {
+        clockGif.position(boxX + (boxWidth - clockGif.width) / 2 - 60, clockY);
+        clockGif.show();
+    } else {
+        clockGif.hide();
     }
 }
 
