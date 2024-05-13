@@ -31,12 +31,14 @@ function modelReady() {
 
 function preload() {
     olympus = loadImage("images/olympus1-remove.png");
+    zeus = loadImage("images/zeus-chair.png")
 }
 
 function draw() {
     background(0);
     image(video, 0, 0, width, height);
     image(olympus, width / 2 - 300, height / 2, width, height);
+    image(zeus, width / 2 - 10, height / 2 + 10, width / 3, height / 3);
 
     for (let i = nodes.length - 1; i >= 0; i--) {
         nodes[i].updatePosition();

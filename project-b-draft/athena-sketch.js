@@ -1,11 +1,16 @@
 let cImage;
 let aState;
-let posX = 80, posY = 300;
+let posX = 80,
+    posY = 300;
 let gameStarted = false;
+let nextButton;
+let nextButtonVisible = false;
+let rockSound;
+let soundPlayed = false; // Variable to track whether the sound has been played
 
 function preload() {
-    cImage = loadImage('images/greek-four-columns.jpeg');
-    aState = loadImage('images/athena-statue.png');
+    cImage = loadImage('images/parthenon.jpeg');
+    aState = loadImage('images/athena-drawing.png');
     rockSound = loadSound('images/stone-slide-sound.mov');
 }
 
@@ -13,7 +18,13 @@ function setup() {
     let canvas = createCanvas(640, 480);
     canvas.parent("p5-canvas-container");
     cImage.resize(width, height);
-    aState.resize(width / 2, height / 2);
+    aState.resize(width / 3, height / 2);
+
+    // Create next button
+    nextButton = createButton('Next');
+    nextButton.position(width / 2 - 50, height - 50);
+    nextButton.mousePressed(goToNextPart);
+    nextButton.hide();
 }
 
 function draw() {
@@ -41,18 +52,29 @@ function draw() {
             }
         }
 
-        // Check if the image is within the specified range and the mouse is pressed
-        if (posY + aState.height / 2 > height / 2 + 100 && posY + aState.height / 2 < height / 2 + 120 &&
-            posX > width / 2 - 150 && posX < width / 2 + 150 && mouseIsPressed) {
+        if (posY + aState.height / 2 > height / 2 + 220 && posY + aState.height / 2 < height / 2 + 270 &&
+            posX > width / 2 - 240 && posX < width / 2 + 270) {
             textAlign(CENTER);
             textSize(20);
+            fill('black');
+            rect(0, 0, width, 100);
             fill('green');
             textSize(30);
             text("Yay, you did it! You found Athena Parthenos!", width / 2, height / 2 - 200)
 
-            if (!rockSound.isPlaying()) {
+            if (!soundPlayed) { // Check if the sound has been played
                 rockSound.play();
+                soundPlayed = true; // Set the variable to true to indicate that the sound has been played
             }
+
+
+            nextButtonVisible = true;
+        }
+
+        if (nextButtonVisible) {
+            nextButton.show();
+        } else {
+            nextButton.hide();
         }
     }
 }
@@ -60,5 +82,14 @@ function draw() {
 function mousePressed() {
     if (!gameStarted) {
         gameStarted = true;
+    }
+}
+
+function goToNextPart() {
+
+    window.location.reload();
+    function goToNextPart() {
+        // Redirect to another image
+        window.location.href = 'greek-four-columns';
     }
 }

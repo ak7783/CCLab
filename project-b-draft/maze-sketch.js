@@ -1,115 +1,268 @@
-//credit to Victoria Phillips
-
-let tImage;
+let time = 0;
+let x = 10;
+let y = 10;
+let ob = 30;//obstacle  
+let speed1 = 1;//obstacle speeed
+let speed2 = 2;
+let level = 1;
+let positive;
+let hero;
+let doghouse;
+let oby = 1;
 
 function preload() {
-    tImage = loadImage('images/theseus-back.png');
-}
+    // soundFormats('wav');
+    // positive=loadSound("positive1.wav");
+    hero = loadImage("images/theseus-forward.png");
+    doghouse = loadImage("images/finish.png");
+    mino = loadImage("images/minotaur.png");
 
+}
 function setup() {
-    let canvas = createCanvas(800, 800);
+    let canvas = createCanvas(400, 400);
     canvas.parent("p5-canvas-container");
 }
 
-let x = 88;
-let y = 120;
-let w = 40;
-let h = 60;
-let cwhite = [255, 255, 255, 255];
-let cblack = [0, 0, 0, 255];
-
 function draw() {
-    background('#FDFCD4');
 
-    strokeWeight(4);
-    stroke(0, 0, 0);
-    fill('#5D382F');
-    line(80, 80, 720, 80);
-    line(80, 160, 80, 720);
-    line(160, 160, 160, 480);
-    line(240, 80, 240, 320);
-    line(320, 160, 320, 320);
-    line(400, 160, 400, 240);
-    line(560, 160, 560, 560);
-    line(480, 240, 480, 480);
-    line(640, 160, 640, 640);
-    line(720, 80, 720, 640);
-    line(480, 640, 480, 720);
-    line(400, 560, 400, 720);
-    line(240, 320, 400, 320);
-    line(80, 640, 320, 640);
-    line(80, 480, 240, 480);
-    line(240, 400, 400, 400);
-    line(400, 320, 480, 320);
-    line(320, 560, 640, 560);
-    line(80, 720, 720, 720);
-    line(240, 480, 240, 560);
-    line(160, 560, 240, 560);
-    line(320, 480, 480, 480);
-    line(560, 640, 640, 640);
-    line(400, 240, 480, 240);
-    line(480, 160, 560, 160);
+    background('#FAF3DD');
+    // ellipse(x,y,10,10);
 
-    noStroke();
-    textSize(20);
-    textStyle(BOLD);
-    fill(0, 245, 10)
-    // text('Start', 85, 125);
-    fill(255, 10, 0)
-    // text('Finish', 660, 710);
-    textSize(36);
-    fill(78, 58, 185);
-    // text('THE MAZE GAME', 240, 40)
-    textSize(12);
-    fill('black');
-    text('Use  arrow keys to move. When finished, press the reload button to play again!', 160, 60);
-    noStroke();
-    image(tImage, x, y, w, h);
 
-    let upColor = get(x, y + 10);
-    let downColor = get(x, y + 10);
-    let rightColor = get(x + 10, y);
-    let leftColor = get(x + 10, y);
-
-    if (keyIsPressed) {
-        if (keyCode == UP_ARROW) {
-            if (eqColor(upColor, cblack)) {
-                x = 88;
-                y = 128;
-            } else {
-                y = y - 4;
-            }
-        } else if (keyCode == DOWN_ARROW) {
-            if (eqColor(downColor, cblack)) {
-                x = 88;
-                y = 128;
-            } else {
-                y = y + 4;
-            }
-        } else if (keyCode == LEFT_ARROW) {
-            if (eqColor(leftColor, cblack)) {
-                x = 88;
-                y = 128;
-            } else {
-                x = x - 4;
-            }
-        } else if (keyCode == RIGHT_ARROW) {
-            if (eqColor(rightColor, cblack)) {
-                x = 88;
-                y = 128;
-            } else {
-                x = x + 4;
-            }
-        }
+    if (level == 1) {
+        level1();
+    }
+    if (level == 2) {
+        level2();
+    }
+    if (level == 3) {
+        level3();
     }
 
-    if (x <= 80 && y >= 64) {
-        x = 88;
-        y = 128;
+    text(time, 300, 50);
+    time = (time + 1 / 60);
+    text('score', 250, 50);
+    image(doghouse, 380, 380, 20, 20);
+
+
+    purpledot();
+}
+
+function purpledot() {
+    // ellipse(ob,100,50,50);
+    // image(evilcat, ob, 100, 50, 50);
+
+    if (red(get(x, y)) == 0)//check if there's no red (obsticles)
+    {
+        x = 10;
+        y = 10;
+    }
+    if (red(get(x, y)) == 67)//check if there's no red (obsticles)
+
+    {
+        x = 10;
+        y = 10;
+
+        // 	text(time, 360,15);
+        // time=(time+1/60);
+    }
+    if (keyCode == RIGHT_ARROW) {
+        x = x + 1;
+    }
+
+    if (keyCode == LEFT_ARROW) {
+        x = x - 1;
+    }
+
+    if (keyCode == DOWN_ARROW) {
+        y = y + 1;
+    }
+
+    if (keyCode == UP_ARROW) {
+        y = y - 1;
+    }
+    fill(177, 106, 255);
+    image(hero, x, y, 15, 15);
+    if (x > 370 && y > 370) {
+
+        level = level + 1;
+        x = 10;
+        y = 10;
+
+    }
+
+}
+
+function level1() {
+
+    fill('#362023');
+    line(400, 1, 1, 1);
+    line(399, 399, 399, 1);
+    line(1, 400, 1, 25);
+    line(1, 75, 30, 75);
+    line(30, 75, 30, 30);
+    line(75, 75, 75, 30);
+    line(75, 30, 100, 30);
+    line(100, 30, 100, 110);
+    line(1, 150, 30, 150);
+    line(1, 250, 30, 250);
+    line(1, 350, 30, 350);
+    line(50, 110, 75, 110);
+    line(75, 110, 75, 150);
+    line(75, 150, 300, 150);
+    line(300, 150, 300, 110);
+    line(300, 110, 325, 110);
+    line(325, 110, 325, 250);
+    line(325, 250, 360, 250);
+    line(360, 250, 360, 345);
+    line(360, 345, 399, 345);
+    line(100, 75, 325, 75);
+    line(325, 75, 325, 30);
+    line(325, 30, 360, 30);
+    line(360, 30, 360, 150);
+    line(360, 150, 325, 150);
+    line(200, 35, 200, 115);
+    line(150, 1, 150, 45);
+    line(250, 1, 250, 45);
+    line(399, 200, 369, 200);
+    line(150, 110, 150, 200);
+    line(150, 200, 105, 200);
+    line(150, 399, 150, 350);
+    line(150, 350, 75, 350);
+    line(75, 350, 75, 200);
+    line(75, 200, 30, 200);
+    line(30, 300, 125, 300);
+    line(300, 399, 300, 350);
+    line(300, 350, 200, 350);
+    line(200, 350, 200, 200);
+    line(200, 250, 105, 250);
+    line(155, 250, 155, 300);
+    line(360, 300, 260, 300);
+    line(260, 300, 260, 200);
+
+    line(400, 400, 400, 1);
+
+    // ellipse(ob,200,50,50);
+    text('level 1', width / 2, 20, 250, 50);
+    fill("purple");
+
+    //middle
+    push();
+    translate(ob - 200, oby * 100);
+    image(mino, 150, 50, 80, 80);
+    pop();
+    ob = ob + speed1;
+    ob = ob + speed2;
+    if (ob < 1 || ob > 400) {
+        speed1 = speed1 * -1;
+    }
+    // top
+    push();
+    translate(ob - 200, oby * 200);
+    scale(1, 1);
+    image(mino, 150, -150, 80, 80);
+    pop();
+
+
+    // bottom mino
+    push();
+    translate(ob - 200, oby * 200);
+    image(mino, 150, 80, 80, 70);
+    pop();
+
+
+    if (ob < 1 || ob > 400) {
+        speed2 = speed2 * -1;
     }
 }
 
-function eqColor(a, b) {
-    return a[0] == b[0] && a[1] == b[1] &&
-        a[2] == b[2] && a[3] == b[3];
+function level2() {
+    fill(67, 59, 59);
+    line(1, 1, 1, 399);
+    line(1, 399, 399, 399);
+    line(399, 399, 399, 1);
+    line(399, 1, 1, 1);
+    line(1, 50, 35, 50);
+    line(1, 125, 35, 125);
+    line(1, 275, 35, 275);
+    line(1, 350, 35, 350);
+    line(35, 125, 35, 75);
+    line(137, 1, 137, 35);
+    line(350, 1, 350, 35);
+    line(100, 175, 100, 50);
+    line(100, 75, 175, 75);
+    line(175, 75, 175, 50);
+    line(35, 175, 175, 175);
+    line(175, 175, 175, 275);
+    line(175, 275, 225, 275);
+    line(225, 275, 225, 50);
+    line(225, 50, 325, 50);
+    line(325, 50, 325, 75);
+    line(275, 75, 399, 75);
+    line(350, 75, 350, 125);
+    line(125, 125, 260, 125);
+    line(399, 175, 275, 175);
+    line(350, 175, 350, 225);
+    line(325, 175, 325, 125);
+    line(399, 350, 360, 350);
+    line(360, 350, 360, 275);
+    line(360, 275, 325, 275);
+    line(325, 275, 325, 225);
+    line(225, 399, 225, 350);
+    line(325, 399, 325, 325);
+    line(325, 325, 125, 325);
+    line(125, 325, 125, 275);
+    line(275, 360, 275, 225);
+    line(175, 325, 175, 350);
+    line(175, 350, 75, 350);
+    line(75, 350, 75, 215);
+    line(75, 215, 35, 215);
+    line(175, 215, 135, 215);
+    line(75, 315, 35, 315);
+    fill(67, 0, 0);
+    line(400, 400, 400, 1);
+
+
+
+    //middle
+    push();
+    translate(ob - 200, oby * 100);
+    image(mino, 150, 50, 80, 80);
+    pop();
+    ob = ob + speed1;
+    ob = ob + speed2;
+    if (ob < 1 || ob > 400) {
+        speed1 = speed1 * -1;
+    }
+    // top
+    push();
+    translate(ob - 200, oby * 200);
+    scale(1, 1);
+    image(mino, 150, -150, 80, 80);
+    pop();
+    ob = ob + speed1;
+    ob = ob + speed2;
+    if (ob < 1 || ob > 400) {
+        speed1 = speed1 * -1;
+    }
+
+
+    // bottom mino
+    push();
+    translate(ob - 200, oby * 200);
+    image(mino, 150, 80, 80, 70);
+    pop();
+
+
+    if (ob < 1 || ob > 400) {
+        speed2 = speed2 * -1;
+    }
+}
+function level3() {
+    background(255, 255, 255);
+    textSize(430);
+    fill(0, 0, 0);
+    text("Congratulations!", 1, 200);
+    image(doghouse, 200, 200, 200, 200);
+    image(hero, 30, 200, 50, 50);
 }
