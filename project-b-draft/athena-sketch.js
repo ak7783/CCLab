@@ -62,9 +62,9 @@ function draw() {
             textSize(30);
             text("Yay, you did it! You found Athena Parthenos!", width / 2, height / 2 - 200)
 
-            if (!soundPlayed) { // Check if the sound has been played
+            if (!soundPlayed) {
                 rockSound.play();
-                soundPlayed = true; // Set the variable to true to indicate that the sound has been played
+                soundPlayed = true;
             }
 
 

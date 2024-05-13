@@ -80,7 +80,7 @@ function draw() {
         }
         background(0);
         text("Your destination: Ancient Greece: 12 Century BC", width / 2, boxY + 300 + bobAmount);
-        image(watchImg, boxX + 80 + (boxWidth - clockGif.width) / 2 + 50, clockY - 30, clockWidth - 100, clockHeight);
+        image(watchImg, boxX - 80 + (boxWidth - clockGif.width) / 2 + 50, clockY - 30, clockWidth - 100, clockHeight);
     }
 }
 

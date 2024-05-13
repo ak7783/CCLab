@@ -222,6 +222,8 @@ function level2() {
     fill(67, 0, 0);
     line(400, 400, 400, 1);
 
+    text('level 2', width / 2, 20, 250, 50);
+    fill("purple");
 
 
     //middle
@@ -260,9 +262,9 @@ function level2() {
 }
 function level3() {
     background(255, 255, 255);
-    textSize(430);
+    textSize(49);
     fill(0, 0, 0);
     text("Congratulations!", 1, 200);
     image(doghouse, 200, 200, 200, 200);
-    image(hero, 30, 200, 50, 50);
+    image(hero, 30, 200, 200, 200);
 }
